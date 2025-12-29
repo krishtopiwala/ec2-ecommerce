@@ -15,7 +15,7 @@ app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-const PORT : Number = Number(process.env.PORT);
+const PORT : Number = Number(process.env.PORT) || 5501;
 const DBURL : string = String(process.env.MONGO_URL);
 
 connectDB(DBURL);
@@ -26,6 +26,6 @@ app.use("/api/address", addressRouter);
 app.use("/api/category", categoryRouter);
 app.use("/api/products", productRouter);
 
-app.listen(PORT || 5501, () => {
+app.listen(PORT, () => {
     console.log(`Server is started at PORT: ${PORT}`);
 });
