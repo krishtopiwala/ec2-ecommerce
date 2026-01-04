@@ -7,7 +7,7 @@ const multer_1 = __importDefault(require("multer"));
 const storage = multer_1.default.diskStorage({
     destination: (request, file, cb) => {
         console.log("Multer, ", file);
-        cb(null, "uploads/");
+        cb(null, "src/uploads/");
     },
     filename: (request, file, cb) => {
         cb(null, Date.now() + '-' + file.originalname);
