@@ -17,7 +17,7 @@ dotenv_1.default.config({ path: "./.env" });
 app.use((0, cors_1.default)());
 app.use(body_parser_1.default.json());
 app.use(body_parser_1.default.urlencoded({ extended: true }));
-const PORT = Number(process.env.PORT);
+const PORT = Number(process.env.PORT) || 5501;
 const DBURL = String(process.env.MONGO_URL);
 (0, db_1.default)(DBURL);
 // Router configuration
@@ -25,7 +25,7 @@ app.use("/api/users", userRoutes_1.default);
 app.use("/api/address", addressRoutes_1.default);
 app.use("/api/category", categoryRoutes_1.default);
 app.use("/api/products", productRoutes_1.default);
-app.listen(PORT || 5501, () => {
+app.listen(PORT, () => {
     console.log(`Server is started at PORT: ${PORT}`);
 });
 //# sourceMappingURL=app.js.map
