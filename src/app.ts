@@ -18,7 +18,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 const PORT : Number = Number(process.env.PORT) || 5501;
 const DBURL : string = String(process.env.MONGO_URL);
 
-connectDB(DBURL);
+// connectDB(DBURL);
 
 // Router configuration
 app.use("/api/users", userRouter);
@@ -26,6 +26,8 @@ app.use("/api/address", addressRouter);
 app.use("/api/category", categoryRouter);
 app.use("/api/products", productRouter);
 
-app.listen(PORT, () => {
-    console.log(`Server is started at PORT: ${PORT}`);
-});
+connectDB(DBURL).then(() => {
+    app.listen(PORT, () => {
+        console.log(`Server is started at PORT: ${PORT}`);
+    });
+})
